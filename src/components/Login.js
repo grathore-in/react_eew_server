@@ -44,7 +44,31 @@ export default function Login(props) {
  
  
   return (
-    <div className="hold-transition login-page">
+    <div className="content-wrapper">
+
+<div className="content-header">
+    <div className="container">
+      <div className="row mb-2">
+        <div className="col-sm-6">
+          <h1 className="m-0"> Top Navigation <small>Example 3.0</small></h1>
+        </div>{/* /.col */}
+        <div className="col-sm-6">
+          <ol className="breadcrumb float-sm-right">
+            <li className="breadcrumb-item"><a href="#">Home</a></li>
+            <li className="breadcrumb-item"><a href="#">Layout</a></li>
+            <li className="breadcrumb-item active">Top Navigation</li>
+          </ol>
+        </div>{/* /.col */}
+      </div>{/* /.row */}
+    </div>{/* /.container-fluid */}
+  </div>
+  {/* /.content-header */}
+  {/* Main content */}
+  <div className="content">
+    <div className="container">
+      <div className="row">
+
+
      <Alert alert={alert} />
       <div className="login-box ">
         <div className="card card-outline card-primary">
@@ -95,6 +119,9 @@ export default function Login(props) {
               </div>
           </div>
         </div>
+      </div>
+      </div>
+      </div>
       </div>
     </div>
   );

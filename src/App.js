@@ -1,28 +1,68 @@
 import "./App.css";
+
+
 import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+import AdminHeader from "./components/AdminHeader";
+import AdminFooter from "./components/AdminFooter";
+
 import Menu from "./components/Menu";
 import Dashboard from "./components/Dashboard";
-import Footer from "./components/Footer";
 import Login from "./components/Login";
+import Home from "./components/Home";
 
-
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
 
 function App() {
 
   if (true) {
+    document.body.classList.add(
+      'hold-transition',
+      'layout-top-nav',
+      'layout-footer-fixed'
+    );
     return (
-       <Login/>
+        <Router>
+          <Header title="EEW Server" page="Home" />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="users/*" element={<Header />} />
+          </Routes>
+          <Footer />
+        </Router>
+        
       );
-  } else {
+  } 
+  else 
+  {
+    document.body.classList.add(
+      'hold-transition',
+      'sidebar-mini',
+      'layout-fixed'
+    );
     return (
+     
       <div className="wrapper">
-        <Header title="EEW Server" page="Home" />
+        <AdminHeader title="EEW Server" page="Home" />
         <Menu />
         
         <Dashboard />
-        <Footer />
+        <AdminFooter />
       </div>
     );
   }
+
 }
+
+
+
+
+  
 export default App;
