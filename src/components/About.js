@@ -1,9 +1,16 @@
 import React from 'react'
+import Page from './Page';
 
 export default function About() {
-  return (
-    <div>
-      About
-    </div>
-  )
+    const pageInfo = {
+      heading: "About Us",
+      subheading: "",
+      navLinks:{
+        about:"About Us"
+      }
+    };
+    const content= "Home";
+    return (
+      <Page pageInfo={pageInfo} content={content} />
+    )
 }

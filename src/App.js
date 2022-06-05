@@ -1,6 +1,5 @@
 import "./App.css";
 
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -11,15 +10,19 @@ import Menu from "./components/Menu";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Home from "./components/Home";
-
+import About from "./components/About";
+import Help from "./components/Help";
+import Contact from "./components/Contact"
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
+  Navigate,
 } from "react-router-dom";
 
 function App() {
+  
+
 
   if (true) {
     document.body.classList.add(
@@ -30,11 +33,15 @@ function App() {
     return (
         <Router>
           <Header title="EEW Server" page="Home" />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="users/*" element={<Header />} />
-          </Routes>
+          
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/help" element={<Help  />} />
+              <Route path="/contact" element={<Contact  />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Navigate to ="/" />}/>
+            </Routes>
           <Footer />
         </Router>
         

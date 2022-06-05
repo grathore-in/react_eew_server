@@ -1,36 +1,43 @@
 import React from "react";
 import { useState } from "react";
-import Alert from './Alert';
+import Page from "./Page";
 
 
 export default function Login(props) {
 
-  const[alert, setAlert]=useState(null);
-    const showAlert = (title, message, type)=>{
-        setAlert({
-            title:title,
-            message: message,
-            type: type
-        })
-        setTimeout (()=>{
-          setAlert(null);
-        }, 1500)
+  const [data, setData]=useState(
+    {
+      username: "",
+      password: ""
     }
+  );
+  const inputEvent = (event)=>{
+    const {name,value} =event.target;
+    setData((preVal)=>{
+      return{
+        ...preVal,
+        [name]: value
+      }
+    })
+  }
 
-  const [username, setUsername]=useState("");
-  const [password, setPassword]=useState("");
+  const[alert, setAlert]=useState(null);
+  const showAlert = (title, message, type)=>{
+      setAlert({
+          title:title,
+          message: message,
+          type: type
+      })
+      setTimeout (()=>{
+        setAlert(null);
+      }, 1500)
+  }
+
   const [loggedIn, setLogin]=useState("false");
 
-  const upadteUsername = (event)=> {
-    setUsername(event.target.value);
-  }
-
-  const upadtePassword = (event)=> {
-    setPassword(event.target.value);    
-  }
 
   const loginCheck= ()=>{
-    if(username==="govind" && password==="Govind@123")
+    if(data.username==="govind" && data.password==="Govind@123")
     {
       setLogin("True");
       showAlert("Logged In","Proceeding for Dashboard.","success");
@@ -42,50 +49,27 @@ export default function Login(props) {
     }
   }
  
- 
-  return (
-    <div className="content-wrapper">
-
-<div className="content-header">
-    <div className="container">
-      <div className="row mb-2">
-        <div className="col-sm-6">
-          <h1 className="m-0"> Top Navigation <small>Example 3.0</small></h1>
-        </div>{/* /.col */}
-        <div className="col-sm-6">
-          <ol className="breadcrumb float-sm-right">
-            <li className="breadcrumb-item"><a href="#">Home</a></li>
-            <li className="breadcrumb-item"><a href="#">Layout</a></li>
-            <li className="breadcrumb-item active">Top Navigation</li>
-          </ol>
-        </div>{/* /.col */}
-      </div>{/* /.row */}
-    </div>{/* /.container-fluid */}
-  </div>
-  {/* /.content-header */}
-  {/* Main content */}
-  <div className="content">
-    <div className="container">
-      <div className="row">
-
-
-     <Alert alert={alert} />
-      <div className="login-box ">
-        <div className="card card-outline card-primary">
-          <div className="card-header text-center">
-            <a href="/" className="h1">
-              <b>EEW</b>Server
-            </a>
-          </div>
-          <div className="card-body">
-            <p className="login-box-msg">Login in to Dashboard {loggedIn}</p>
+  const pageInfo = {
+    heading: "Login",
+    subheading: "",
+    navLinks:{
+      login:"Login"
+    }
+  };
+  const content= (
+<div className="d-flex justify-content-center py-5">
+<div className="login-box  ">
+        <div className="card card-outline card-primary ">
+          <div className="card-body ">
+            <p className="login-box-msg">Login in to Dashboard</p>
               <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   placeholder="Username"
-                  value={username}
-                  onChange={upadteUsername}
+                  name="username"
+                  value={data.username}
+                  onChange={inputEvent}
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
@@ -98,8 +82,9 @@ export default function Login(props) {
                   type="password"
                   className="form-control"
                   placeholder="Password"
-                  value={password}
-                  onChange={upadtePassword}
+                  name="password"
+                  value={data.password}
+                  onChange={inputEvent}
                 />
                 <div className="input-group-append">
                   <div className="input-group-text">
@@ -120,9 +105,17 @@ export default function Login(props) {
           </div>
         </div>
       </div>
-      </div>
-      </div>
-      </div>
-    </div>
+</div>
+  
+  );
+
+  return (
+    <div>
+      <Page pageInfo={pageInfo} content={content} alert={alert}/>
+
+
+     
+     </div>
+     
   );
 }
